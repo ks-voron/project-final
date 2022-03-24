@@ -19,54 +19,52 @@
 - [Links](#links)
 
 ## Project Description
-Write a short description of your project: 3-5 sentences about what your project is about, why you chose this topic (if relevant), and what you are trying to show.
+Unstructured data in the form of text is present everywhere today. Text can be a rich source of information, but due to its unstructured nature it can be hard to extract insights from it. Text classification is one of the important task in machine learning (ML). It is a process of assigning categories to documents helping us to automatically & quickly structure and analyze text in a cost-effective manner. 
 
-## Hypotheses / Questions
-* What data/business/research/personal question you would like to answer?
-* What is the context for the question and the possible scientific or business application?
-* What are the hypotheses you would like to test in order to answer your question?  
-Frame your hypothesis with statistical/data languages (i.e. define Null and Alternative Hypothesis). You can use formulas if you want but that is not required.
+## Hypotheses / Questions 
+Using capabilities of NLP, find an automated approach to the classification of user reviews to improve the efficiency and customer satisfaction.
 
 ## Dataset
-* Where did you get your data? If you downloaded a dataset (either public or private), describe where you downloaded it and include the command to load the dataset.
-* Did you build your own datset? If so, did you use an API or a web scraper? PRovide the relevant scripts in your repo.
-* For all types of datasets, provide a description of the size, complexity, and data types included in your dataset, as well as a schema of the tables if necessary.
-* If the question cannot be answered with the available data, why not? What data would you need to answer it better?
+* Reviews extracted from Google Play Store (Android). Filtered to reviews with rating less than 4 and translated to English. 
 
 ## Cleaning
-Describe your full process of data wrangling and cleaning. Document why you chose to fill missing values, extract outliers, or create the variables you did as well as your reasoning behind the process.
+Before we move to model building, we need to preprocess our dataset:
 
-## Analysis
-* Overview the general steps you went through to analyze your data in order to test your hypothesis.
-* Document each step of your data exploration and analysis.
-* Include charts to demonstrate the effect of your work.
-* If you used Machine Learning in your final project, describe your feature selection process.
+1. Removing punctuations, special characters, URLs & hashtags
+2. Stop-word removal: We can remove a list of generic stop words from the English vocabulary using nltk. A few such words are ‘i’,’you’,’a’,’the’,’he’,’which’ etc.
+3. Stemming: Refers to the process of slicing the end or the beginning of words with the intention of removing affixes(prefix/suffix)
 
-## Model Training and Evaluation
-*Include this section only if you chose to include ML in your project.*
-* Describe how you trained your model, the results you obtained, and how you evaluated those results.
+It’s difficult to work with text data while building Machine learning models since these models need well-defined numerical data. The process to convert text data into numerical data/vector, is called vectorization or in the NLP world, word embedding. Bag-of-Words(BoW) and Word Embedding (with Word2Vec) are two well-known methods for converting text data to numerical data.
+
+## LSA (Bag of Words model)
+There are a few versions of Bag of Words, corresponding to different words scoring methods. We use the Sklearn library to calculate the BoW numerical values using these approaches:
+
+1. Count vectors: It builds a vocabulary from a corpus of documents and counts how many times the words appear in each document
+2. Term Frequency-Inverse Document Frequencies (tf-Idf): Count vectors might not be the best representation for converting text data to numerical data. So, instead of simple counting, we can also use an advanced variant of the Bag-of-Words that uses the term frequency–inverse document frequency (or Tf-Idf). Basically, the value of a word increases proportionally to count in the document, but it is inversely proportional to the frequency of the word in the corpus
+
+## Word2Vec model
+One of the major drawbacks of using Bag-of-words techniques is that it can’t capture the meaning or relation of the words from vectors. Word2Vec is one of the most popular technique to learn word embeddings using shallow neural network. 
+We'll be using the pre-trained vectors trained on part of Google News dataset (about 100 billion words). The model contains 300-dimensional vectors for 3 million words and phrases.
+
 
 ## Conclusion
-* Summarize your results. What do they mean?
-* What can you say about your hypotheses?
-* Interpret your findings in terms of the questions you try to answer.
+* Used different methods when converting textual data to numerical. 
+* Visualization of the results.
+* The clusters are not well distinguished due to small amounts of data and to the fact that the majority of the reviews have the same topic.
 
 ## Future Work
-Address any questions you were unable to answer, or any next steps or future extensions to your project.
+* Obtain larger dataset.
+* Try out other model (Latent Dirichlet Allocation (LDA)).
 
 ## Workflow
-Outline the workflow you used in your project. What were the steps?
-How did you test the accuracy of your analysis and/or machine learning algorithm?
-
-## Organization
-How did you organize your work? Did you use any tools like a trello or kanban board?
-
-What does your repository look like? Explain your folder and file structure.
+1. Importing Libraries
+2. Loading the data set & EDA
+3. Text pre-processing
+4. LSA
+5. Word2Vec
+6. Conclusions
 
 ## Links
-Include links to your repository, slides and trello/kanban board. Feel free to include any other links associated with your project.
 
-
-[Repository](https://github.com/)  
-[Slides](https://slides.com/)  
-[Trello](https://trello.com/en)  
+[Repository](https://github.com/ks-voron/project-final/)  
+[Slides](https://docs.google.com/presentation/d/1bxg1m4SUxHHR_AfDG0EDk3ewB9sdF4Yf/edit?usp=sharing&ouid=115060573278927714485&rtpof=true&sd=true)   
